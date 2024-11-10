@@ -7,10 +7,11 @@ const Layout = ({ children }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex flex-col">
-      <Nav />
-      {children}
-    </div>
+      <div className="flex flex-col">
+        <Nav />
+        {children}
+      </div>
+
   );
 };
 
