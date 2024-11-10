@@ -1,10 +1,10 @@
-import "@/styles/globals.css";
-import Layout from "@/components/Layout";
+import "../styles/globals.css";
+import Layout from "../components/layout";
 import { useRouter } from "next/router";
-import { UserProvider } from "@/firebase/UserProvider";
-import { auth } from "@/firebase/config";
+import { UserProvider } from "../firebase/UserProvider";
+import { auth } from "../firebase/config";
 import { useState, useEffect } from "react";
-import { JobsProvider } from "@/firebase/JobProvider";
+import { JobsProvider } from "../firebase/JobProvider";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
