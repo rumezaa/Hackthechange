@@ -4,8 +4,8 @@ export default function Nav() {
   const route = useRouter();
   return (
     <div className="bg-blue w-screen h-16 flex flex-row text-white justify-between">
-      <div className="flex items-center cursor-pointer" onClick={() => Router.push("/")}>
-        
+      <div className="flex items-center cursor-pointer" onClick={() => router.push("")}>
+        <img src="/logo.svg" alt="Logo" className="w-10 h-10 mr-3" />
       </div>
       <div className="flex gap-x-10 px-10">
         <h2 onClick={() => router.push("/dashboard")}
