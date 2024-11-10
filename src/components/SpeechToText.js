@@ -79,7 +79,7 @@ const SpeechToText = ({ sendWordCount }) => {
 
   useEffect(() => {
     sendWordCount(wordCount);
-  }, [wordCount]);
+  }, [wordCount, sendWordCount]);
 
   async function handleUpdate() {
     // Update only the preferences field

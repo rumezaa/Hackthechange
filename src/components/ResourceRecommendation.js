@@ -59,9 +59,8 @@ const ResourceRecommendation = ({ userKeywords }) => {
       {recommendedResources?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {recommendedResources?.map((url, index) => (
-             <a href={url} target="_blank">
+             <a href={url} target="_blank" key={index}>
             <div
-              key={index}
               className="border p-2 rounded-lg shadow-md bg-white"
             >
              

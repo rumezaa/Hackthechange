@@ -100,7 +100,7 @@ export default function Dashboard() {
                 color: "gray",
               }}
             >
-              {"\u00D7"}
+              x
             </button>
             <h3 className="text-2xl font-semibold text-blue mb-4">
               {currentJob.title}
