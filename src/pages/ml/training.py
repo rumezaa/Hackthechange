@@ -7,6 +7,9 @@ from tensorflow.keras.optimizers import Adam
 from keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
+# dependency outdated, couldn't convert h5 to json to save weights
+import tensorflowjs as tfjs
+
 
 def load_dataset(file_path):
     df = pd.read_csv(file_path)
@@ -19,47 +22,36 @@ def load_dataset(file_path):
 
     sequences = tokenizer.texts_to_sequences(samples)
 
-    max_len = 75  # Find max sequence length
+    max_len = 75
     print(max_len)
     padded_sequences = pad_sequences(sequences, maxlen=max_len)
 
     print("Padded Sequences:")
     print(padded_sequences)
 
-    # Example: Let's assume you have a 'label' column in your CSV for classification
-    # Extract labels from the CSV (adjust column name as needed)
     labels = df['label'].values
-
-    # If the labels are categorical, make sure to encode them appropriately
-    # For binary classification: Convert to a NumPy array
     labels = np.array(labels)
 
     return padded_sequences, labels, max_len
 
 
-# Load data from CSV
 xs, ys, max_len = load_dataset('./data/training.csv')
 
-# Step 2: Define and compile the model
 model = Sequential()
 model.add(Dense(16, input_dim=75, activation='relu'))
 model.add(Dense(8, activation='relu'))
 model.add(Dense(8, activation='relu'))
-model.add(Dense(7, activation='softmax'))
+model.add(Dense(1, activation='softmax'))
 
 
-# Compile the model
 model.compile(optimizer=Adam(),
               loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-# Step 3: Train the model
-
-
-model.fit(xs, ys, epochs=50, batch_size=10, shuffle=True, verbose=1)
+model.fit(xs, ys, epochs=100, batch_size=10, shuffle=True, verbose=1)
 print("Training complete")
 
 x1s, y1s, _ = load_dataset('./data/test.csv')
 
 t = model.evaluate(x1s, y1s)
 model.save(f"./models/net.h5")
-print(t[1])
+tfjs.converters.save_keras_model(model, './models')
