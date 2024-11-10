@@ -40,7 +40,7 @@ const SpeechToText = ({ sendWordCount }) => {
       setWordCount({})
       console.log("Recording.");
       const SpeechRecognition =
-        window.SpeechRegonition || window.webkitSpeechRecognition;
+        window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
 
       recognitionRef.current.continuous = true;
@@ -48,8 +48,8 @@ const SpeechToText = ({ sendWordCount }) => {
       recognitionRef.current.onresult = async function (event) {
         const transcript =
           event.results[event.results.length - 1][0].transcript;
-        setText((text) => text + transcript);
-        console.log(transcript);
+          setText((text) => text + transcript);
+          console.log(transcript);
       };
 
       recognitionRef.current.start();
