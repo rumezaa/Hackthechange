@@ -76,8 +76,19 @@ export default function JobPostings() {
             Available Job Postings
           </h2>
 
-          <div onClick={() => setShowRecommendation(!showRecommendation)} className={`${showRecommendation ? "bg-green-600 text-white" : "bg-gray-400 text-black"} rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center`}>
-            <h2>{showRecommendation ? "Showing recommendations" : "Click to show recommendations"}</h2>
+          <div
+            onClick={() => setShowRecommendation(!showRecommendation)}
+            className={`${
+              showRecommendation
+                ? "bg-green-600 text-white"
+                : "bg-gray-400 text-black"
+            } rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center`}
+          >
+            <h2>
+              {showRecommendation
+                ? "Showing recommendations"
+                : "Click to show recommendations"}
+            </h2>
           </div>
         </div>
 
@@ -90,6 +101,7 @@ export default function JobPostings() {
                     job.noKeywords.includes(key)
                   ))) && (
                 <div
+                  key={job.id}
                   onClick={() => openModal(job)}
                   className={`border border-gray-300 rounded-lg p-5 shadow-md cursor-pointer bg-white text-gray-500 transition transform hover:scale-110 hover:text-gray-700 hover:bg-gray-100 duration-300 ease-in-out`}
                 >
@@ -119,7 +131,7 @@ export default function JobPostings() {
                 color: "gray",
               }}
             >
-              &times;
+              {"\u00D7"}
             </button>
             <h3 className="text-2xl font-semibold text-blue mb-4">
               {currentJob.title}
