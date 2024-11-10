@@ -82,12 +82,12 @@ export default function JobPostings() {
               showRecommendation
                 ? "bg-blue text-white"
                 : "bg-gray-200 text-black border border-gray-500"
-            } rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center`}
+            } rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center hover:scale-105 hover:brightness-110`}
           >
             <h2>
               {showRecommendation
                 ? "Click to show recommendations"
-                : "Showing recommendations"}
+                : "Click to hide recommendations"}
             </h2>
           </div>
         </div>
