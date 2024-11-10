@@ -106,13 +106,11 @@ export default function JobPostings() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentJob, setCurrentJob] = useState(null);
 
-  // Handle modal open
   const openModal = (job) => {
     setCurrentJob(job);
     setIsModalOpen(true);
   };
 
-  // Handle modal close
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentJob(null);
@@ -134,7 +132,7 @@ export default function JobPostings() {
                 hoverJobId === job.id ? "bg-gray-100" : "bg-white"
               }`}
               style={{
-                transform: hoverJobId === job.id ? "scale(1.05)" : "scale(1)",
+                transform: hoverJobId === job.id ? "scale(1.10)" : "scale(1)",
                 transition: "transform 0.3s ease",
               }}
             >
@@ -151,10 +149,11 @@ export default function JobPostings() {
         </div>
       </main>
 
-      {/* Modal */}
       {isModalOpen && currentJob && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+        <div className="fixed inset-0 flex items-center  justify-center bg-black bg-opacity-50 z-20">
+          <div
+            className={`bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative `}
+          >
             <button
               onClick={closeModal}
               style={{ position: "absolute", top: "10px", right: "10px", color: "gray" }}
@@ -167,9 +166,9 @@ export default function JobPostings() {
             <p className="text-sm text-gray-700 mb-6">{currentJob.details}</p>
             <button
               onClick={() => {
-                // Placeholder action
+                // We place the action button here
               }}
-              className="bg-blue text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-blue text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
               Take Action
             </button>
