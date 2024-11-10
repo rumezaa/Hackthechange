@@ -3,23 +3,26 @@ import { useState, useContext, useEffect } from "react";
 import { signInWithGoogle, signIn, signUp } from "@/firebase/firebaseFuncs";
 import { UserContext } from "@/firebase/UserProvider";
 import { useRouter } from "next/router";
-
+import { EyeIcon } from "@/pages/components/EyeIcon";
 
 export default function Login() {
   const nav = useRouter();
   const [email, setEmail] = useState("");
-  const [pswd, setPswd] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
+  const [isHidden, setIsHidden] = useState(true);
   const [user] = useContext(UserContext);
 
   const [isLogin, setIsLogin] = useState(true);
 
-  const handleSumbit = () => {
+  const handleSumbit = (e) => {
+    e.preventDefault();
+
     if (isLogin) {
-      signIn(email, pswd, setError);
+      signIn({ email, password, setError });
     } else {
-      signUp(email, name, pswd);
+      signUp({ email, name, password, setError });
     }
   };
 
@@ -28,8 +31,6 @@ export default function Login() {
       nav.push("/dashboard");
     }
   }, [user, nav]);
-
-  console.log(user)
 
   return (
     <div className="flex bg-blue w-screen h-screen justify-between">
@@ -56,13 +57,13 @@ export default function Login() {
           onClick={() => signInWithGoogle(setError)}
           style={{ cursor: "pointer" }}
         >
-          <div className="bg-white shadow-lg rounded-full flex items-center p-2">
+          <div className="bg-white shadow-lg rounded-full flex items-center p-2 ">
             <div
               style={{ backgroundImage: `url(google-logo.svg)` }}
               className="bg-contain bg-no-repeat h-8 w-8 lg:h-12 lg:w-12"
             />
           </div>
-          <h3 className="font-bold text-md lg:text-xl">Sign in with Google</h3>
+          <h3 className="font-bold text-md lg:text-xl ">Sign in with Google</h3>
         </div>
         <form
           className="flex flex-col gap-y-5 justify-center items-center w-full"
@@ -74,6 +75,7 @@ export default function Login() {
               <input
                 type="text"
                 value={name}
+                placeholder="John Doe"
                 required
                 onChange={(e) => setName(e.target.value)}
                 className="border border-black rounded-md p-3 w-full"
@@ -85,6 +87,7 @@ export default function Login() {
             <input
               type="email"
               value={email}
+              placeholder="johndoe@example.com"
               required
               onChange={(e) => setEmail(e.target.value)}
               className="border border-black rounded-md p-3 w-full"
@@ -93,27 +96,39 @@ export default function Login() {
 
           <div className="flex flex-col w-full">
             <h2 className="text-xs uppercase">password</h2>
-            <input
-              type="password"
-              value={pswd}
-              required
-              onChange={(e) => setPswd(e.target.value)}
-              className="border border-black rounded-md p-3 w-full"
-            />
+            <div className="flex flex-row justify-between items-center border border-black rounded-md p-3 w-full">
+              <input
+                type={isHidden ? "password" : "text"}
+                value={password}
+                required
+                placeholder="*****"
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+              <div onClick={() => setIsHidden(!isHidden)}>
+                <EyeIcon isHidden={isHidden} />
+              </div>
+            </div>
           </div>
 
           <button
             type="submit"
-            className="bg-blue rounded-full text-white font-semibold p-4 px-10 cursor pointer"
+            className="bg-blue rounded-full text-white font-semibold p-4 px-10 cursor pointer transition transform hover:scale-110 duration-300 ease-in-out"
           >
             <h2>{isLogin ? "Login" : "Sign Up"}</h2>
           </button>
+
+          {error && (
+            <p
+              className={`
+           text-red-500 text-xs absolute bottom-16 lg:bottom-12`}
+            >
+              {error}
+            </p>
+          )}
         </form>
 
-        <div
-          className="mt-10 flex absolute"
-          style={{ zIndex: 25, bottom: "11vh" }}
-        >
+        <div className="mt-10 flex" style={{ zIndex: 25, bottom: "11vh" }}>
           <h3>
             {isLogin ? "Don't have an account?" : "Have an account?"}{" "}
             <span
@@ -124,6 +139,8 @@ export default function Login() {
             </span>
           </h3>
         </div>
+
+        <div></div>
       </div>
     </div>
   );

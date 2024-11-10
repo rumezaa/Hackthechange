@@ -62,6 +62,7 @@ export const signIn = ({ email, password, error, setError }) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error("Sign in error:", errorCode, errorMessage);
+      setError(errorMessage)
     });
 };
 
@@ -110,26 +111,21 @@ export function checkFields({
   );
 }
 
-export function signUp({
-  email,
-  name,
-  password,
-}) {
-  if (checkFields({ email, name, password })) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        const data = {
-          full_name: name,
-          email: email,
-        };
-        addUser(data);
-        console.log("created user successfully")
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        // ..
-      });
-  } else {
-    console.log("hey")
+export function signUp({ email, name, password, setError }) {
+    if (checkFields({ email, name, password })) {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            const data = {
+              email: email,
+              full_name: name,
+            };
+            addUser(data);
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            setError(errorMessage)
+            // ..
+          });
+      }
   }
-}
