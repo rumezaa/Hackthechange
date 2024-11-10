@@ -8,21 +8,19 @@ export default function Nav() {
     signOut(auth)
       .then(() => {
         localStorage.clear(); // we need somethig less volatile
-        route.push("/");
+        router.push("/");
       })
       .catch((error) => {
         console.error("Error signing out:", error);
       });
   }
   return (
-    <div className="bg-blue w-screen h-16 flex flex-row text-white justify-between">
-
-        <div  />
+    <div className="bg-blue w-screen h-16 flex flex-row text-white justify-between items-center">
       <div
-        className="flex items-center cursor-pointer"
-        onClick={() => router.push("/")}
-      ></div>
-      <div className="flex gap-x-10 px-10">
+        style={{ backgroundImage: `url(logo.svg)` }}
+        className="bg-contain bg-no-repeat h-16 w-16"
+      />
+      <div className="flex gap-x-10 px-10 items-center">
         <h2
           onClick={() => router.push("/dashboard")}
           className="cursor-pointer font-bold hover:text-gray-300 hover:scale-105 transition py-5"

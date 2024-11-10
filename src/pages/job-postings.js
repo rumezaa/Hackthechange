@@ -17,6 +17,7 @@ export default function JobPostings() {
   const [currentJob, setCurrentJob] = useState(null);
   const [posts] = useContext(JobsContext);
   const [user] = useContext(UserContext);
+  const [showRecommendation, setShowRecommendation] = useState(true);
 
   const openModal = (job) => {
     setCurrentJob(job);
@@ -70,24 +71,37 @@ export default function JobPostings() {
   return (
     <div className="flex flex-col items-center bg-white min-h-screen">
       <main className="w-full max-w-6xl px-6 py-10">
-        <h2 className="text-2xl font-bold text-blue mb-6">
-          Available Job Postings
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {posts.map((job) => (
-            <div
-              onClick={() => openModal(job)}
-              className={`border border-gray-300 rounded-lg p-5 shadow-md cursor-pointer bg-white text-gray-500  transition transform hover:scale-110 hover:text-gray-700 hover:bg-gray-100 duration-300 ease-in-out`}
-            >
-              <h3 className="text-lg font-semibold text-blue mb-2">
-                {job.title}
-              </h3>
-              <h4 className="text-md text-gray-700">{job.company}</h4>
-              <p className="text-sm mb-4">{job.location}</p>
+        <div className="w-full flex flex-row justify-between text-black">
+          <h2 className="text-2xl font-bold text-blue mb-6">
+            Available Job Postings
+          </h2>
 
-              <p className="text-sm ">{job.details}</p>
-            </div>
-          ))}
+          <div onClick={() => setShowRecommendation(!showRecommendation)} className={`${showRecommendation ? "bg-green-600 text-white" : "bg-gray-400 text-black"} rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center`}>
+            <h2>{showRecommendation ? "Showing recommendations" : "Click to show recommendations"}</h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {posts.map(
+            (job) =>
+              (!showRecommendation ||
+                (showRecommendation &&
+                  Object.keys(user.keywords).some((key) =>
+                    job.noKeywords.includes(key)
+                  ))) && (
+                <div
+                  onClick={() => openModal(job)}
+                  className={`border border-gray-300 rounded-lg p-5 shadow-md cursor-pointer bg-white text-gray-500 transition transform hover:scale-110 hover:text-gray-700 hover:bg-gray-100 duration-300 ease-in-out`}
+                >
+                  <h3 className="text-lg font-semibold text-blue mb-2">
+                    {job.title}
+                  </h3>
+                  <h4 className="text-md text-gray-700">{job.company}</h4>
+                  <p className="text-sm mb-4">{job.location}</p>
+                  <p className="text-sm ">{job.details}</p>
+                </div>
+              )
+          )}
         </div>
       </main>
 

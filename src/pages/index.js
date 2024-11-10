@@ -1,19 +1,28 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import SpeechToText from "../components/SpeechToText";
 import Login from "@/components/Auth/Login";
+import { UserContext } from "@/firebase/UserProvider";
+import { useRouter } from "next/router";
+
 
 export default function Home() {
-  const [email, setEmail] = useState();
-  const [pswd, setPswd] = useState();
+  const nav = useRouter();
+  const [user] = useContext(UserContext);
+  const [isFirstTime, setIsFirstTime] = useState(user && user?.signInFirstTime);
+  const [wordCount, setWordCount] = useState();
 
-  const handleSumbit = () => {
-    return console.log("hi");
-  };
+  useEffect(() => {
+    if (user && !user.signInFirstTime) {
+      nav.push("/dashboard");
+    }
+  }, [user, nav]);
+
 
   return (
-    <div>
-      <Login />
+    <div className="bg-white text-black">
+      {!user && <Login />}
+      {user.signInFirstTime && <SpeechToText sendWordCount={setWordCount} />}
     </div>
   );
 }

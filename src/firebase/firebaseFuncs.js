@@ -86,7 +86,8 @@ export const signInWithGoogle = async ({setError}) => {
        full_name: user.displayName, // Assuming displayName is in "First Last" format
        email: user.email,
        job_postings: [],
-       mentors: [],
+       signInFirstTime: true,
+       keywords: []
       };
 
       addUser(data);
@@ -121,7 +122,8 @@ export function signUp({ email, name, password, setError }) {
               email: email,
               full_name: name,
               job_postings: [],
-              mentors: [],
+              signInFirstTime: true,
+              keywords: []
             };
             addUser(data);
           })

@@ -6,13 +6,13 @@ import { useRouter } from "next/router";
 import { EyeIcon } from "@/components/EyeIcon";
 
 export default function Login() {
-  const nav = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [isHidden, setIsHidden] = useState(true);
-  const [user] = useContext(UserContext);
+
 
   const [isLogin, setIsLogin] = useState(true);
 
@@ -26,11 +26,7 @@ export default function Login() {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      nav.push("/dashboard");
-    }
-  }, [user, nav]);
+
 
   return (
     <div className="flex bg-blue w-screen h-screen justify-between">
