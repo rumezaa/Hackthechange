@@ -148,7 +148,7 @@ export default function JobPostings() {
               } text-white px-4 py-2 rounded hover:bg-blue-700 transition`}
             >
               {(user.job_postings.includes(currentJob.id) &&
-                "Listing Adding") ||
+                "Listing Added") ||
                 "Take Action"}
             </button>
           </div>

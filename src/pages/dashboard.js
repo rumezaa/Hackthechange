@@ -58,8 +58,8 @@ export default function Dashboard() {
         </h2>
 
         <div>
-          <h2 className="uppercase font-thin text-sm mb-2">
-            interests you&apos;ve taken action with
+          <h2 className="font-medium text-sm mb-2">
+            Interests you&apos;ve taken action with
           </h2>
           <div className="overflow-x-auto w-full">
             <div className="flex flex-row gap-6 min-w-max">
@@ -67,7 +67,7 @@ export default function Dashboard() {
                 <div
                   key={job.id} // Make sure to add a key if job.id is available
                   onClick={() => openModal(job)}
-                  className={`border border-gray-300 h-[15rem] w-[18rem] rounded-lg p-5 shadow-md cursor-pointer bg-white text-gray-500 transition transform hover:scale-110 hover:text-gray-700 hover:bg-gray-100 duration-300 ease-in-out`}
+                  className={`border border-gray-300 h-[15rem] w-[18rem] rounded-lg p-5 shadow-md cursor-pointer bg-white text-gray-500 transition transform hover:text-gray-700 hover:bg-gray-100 duration-300 ease-in-out`}
                 >
                   <h3 className="text-lg font-semibold text-blue mb-2">
                     {job.title}
