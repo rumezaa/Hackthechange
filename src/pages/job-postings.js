@@ -80,8 +80,8 @@ export default function JobPostings() {
             onClick={() => setShowRecommendation(!showRecommendation)}
             className={`${
               showRecommendation
-                ? "bg-blue text-white border border-black"
-                : "bg-gray-200 text-black border border-black"
+                ? "bg-blue text-white"
+                : "bg-gray-200 text-black border border-gray-500"
             } rounded-md h-8 px-2 cursor-pointer text-center flex justify-center items-center`}
           >
             <h2>
