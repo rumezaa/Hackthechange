@@ -8,7 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blue: "#5865F2",
+        blue: "#5865F2"
+
+      },
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'], // Set Montserrat as the default sans font
       },
     },
   },

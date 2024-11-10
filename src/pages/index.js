@@ -1,29 +1,28 @@
 import Image from "next/image";
-import localFont from "next/font/local";
-import SpeechToText from "./components/SpeechToText.js";
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import SpeechToText from "../components/SpeechToText";
+import Login from "@/components/Auth/Login";
+import { UserContext } from "@/firebase/UserProvider";
+import { useRouter } from "next/router";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export default function Home() {
-  const [wordCount, setWordCount] = useState(null);
+  const nav = useRouter();
+  const [user] = useContext(UserContext);
+  const [isFirstTime, setIsFirstTime] = useState(user && user?.signInFirstTime);
+  const [wordCount, setWordCount] = useState();
 
-  const handleWordCount = (data) => {
-    setWordCount(data);
-  };
+  useEffect(() => {
+    if (user && !user.signInFirstTime) {
+      nav.push("/dashboard");
+    }
+  }, [user, nav]);
+
 
   return (
-    <div>
-      <SpeechToText sendWordCount={handleWordCount} />
+    <div className="bg-white text-black">
+      {!user && <Login />}
+      {user?.signInFirstTime && <SpeechToText sendWordCount={setWordCount} />}
     </div>
   );
 }
