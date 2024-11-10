@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import json from "./static/keywords.json";
 import { UserContext, UserProvider } from "@/firebase/UserProvider";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
+import { db } from "../firebase/config";
 import { useRouter } from "next/router";
 
 const SpeechToText = ({ sendWordCount }) => {
@@ -39,8 +39,7 @@ const SpeechToText = ({ sendWordCount }) => {
     if (!recording) {
       setWordCount({})
       console.log("Recording.");
-      const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition = window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
 
       recognitionRef.current.continuous = true;
@@ -48,8 +47,8 @@ const SpeechToText = ({ sendWordCount }) => {
       recognitionRef.current.onresult = async function (event) {
         const transcript =
           event.results[event.results.length - 1][0].transcript;
-          setText((text) => text + transcript);
-          console.log(transcript);
+        setText((text) => text + transcript);
+        console.log(transcript);
       };
 
       recognitionRef.current.start();
@@ -119,10 +118,10 @@ const SpeechToText = ({ sendWordCount }) => {
         <div className=" flex flex-col items-center justify-center text-center mt-5">
           From your recording, we understand that you have experience with:
           <div className="grid grid-cols-5">
-            {Object.entries(wordCount).map(([key, value]) => (
-              <>
-                <h2 className="font-bold text-blue">{data[key]}</h2>
-              </>
+            {Object.entries(wordCount).map(([key, value], idx) => (
+              <div key={idx}>
+                <h2  className="font-bold text-blue">{data[key]}</h2>
+              </div>
             ))}
           </div>
           <h2 className=" mt-20 text-lg font-bold">

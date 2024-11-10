@@ -1,9 +1,9 @@
-import Nav from "@/components/nav";
-import MentorCard from "@/components/mentorCard";
+import Nav from "../components/nav";
+import MentorCard from "../components/mentorCard";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "@/firebase/UserProvider";
-import { JobsContext } from "@/firebase/JobProvider";
-import ResourceRecommendation from "@/components/ResourceRecommendation";
+import { UserContext } from "../firebase/UserProvider";
+import { JobsContext } from "../firebase/JobProvider";
+import ResourceRecommendation from "../components/ResourceRecommendation";
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
