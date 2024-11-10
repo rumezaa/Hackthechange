@@ -3,6 +3,7 @@ import MentorCard from "@/components/mentorCard";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/firebase/UserProvider";
 import { JobsContext } from "@/firebase/JobProvider";
+import ResourceRecommendation from "@/components/ResourceRecommendation";
 
 export default function dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,6 +83,8 @@ export default function dashboard() {
           </div>
         </div>
       </div>
+
+      <ResourceRecommendation userKeywords={user && user?.keywords} />
 
       {isModalOpen && currentJob && (
         <div className="fixed inset-0 flex items-center  justify-center bg-black bg-opacity-50 z-20">

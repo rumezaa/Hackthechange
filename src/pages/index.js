@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className="bg-white text-black">
       {!user && <Login />}
-      {user.signInFirstTime && <SpeechToText sendWordCount={setWordCount} />}
+      {user?.signInFirstTime && <SpeechToText sendWordCount={setWordCount} />}
     </div>
   );
 }

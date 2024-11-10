@@ -74,7 +74,7 @@ export default function Login() {
                 placeholder="John Doe"
                 required
                 onChange={(e) => setName(e.target.value)}
-                className="border border-black rounded-md p-3 w-full"
+                className="focus:outline-none border border-black rounded-md p-3 w-full"
               />
             </div>
           )}
@@ -86,7 +86,7 @@ export default function Login() {
               placeholder="johndoe@example.com"
               required
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-black rounded-md p-3 w-full"
+              className="focus:outline-none border border-black rounded-md p-3 w-full"
             />
           </div>
 
@@ -100,7 +100,7 @@ export default function Login() {
                 placeholder="*****"
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
-                className="focus-outline:none"
+                className="focus:outline-none"
               />
               <div onClick={() => setIsHidden(!isHidden)}>
                 <EyeIcon isHidden={isHidden} />

@@ -8,8 +8,9 @@ export const UserContext = createContext([]);
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [initializing, setInitializing] = useState(true);
-
+ 
   useEffect(() => {
+
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         const docRef = doc(db, "users", userAuth.uid);
@@ -19,6 +20,7 @@ export const UserProvider = ({ children }) => {
             setInitializing(false);
           } else {
             console.log("No such document!");
+            setInitializing(false);
           }
         });
 

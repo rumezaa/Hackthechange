@@ -36,10 +36,10 @@ export default function Nav() {
         </h2>
 
         <h2
-          onClick={() => router.push("/placeholder")}
+          onClick={() => router.push("/mentors")}
           className="cursor-pointer font-bold hover:text-gray-300 hover:scale-105 transition py-5"
         >
-          Placeholder
+          Mentors
         </h2>
 
         <div
