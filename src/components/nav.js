@@ -45,7 +45,7 @@ export default function Nav() {
         <div
           onClick={handleSignOut}
           style={{ backgroundImage: `url(logout-icon.svg)` }}
-          className="bg-contain bg-no-repeat h-10 w-10"
+          className="cursor-pointer bg-contain bg-no-repeat h-10 w-10 hover:scale-105 transition py-5"
         />
       </div>
     </div>

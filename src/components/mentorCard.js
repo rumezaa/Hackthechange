@@ -1,5 +1,3 @@
-import Arrow from "/public/arrow-icon.svg";
-
 export default function MentorCard({ name, image, specialization }) {
   return (
     <div className="rounded shadow-lg bg-white p-4">
@@ -14,7 +12,7 @@ export default function MentorCard({ name, image, specialization }) {
         <h2>Learn more about {name}</h2>
         <div
           className="ml-2 w-4 h-4 bg-no-repeat bg-cover"
-          style={{ backgroundImage: `url(${Arrow.src})` }}
+          style={{ backgroundImage: `/arrow-icon.svg` }}
         />
       </div>
     </div>
