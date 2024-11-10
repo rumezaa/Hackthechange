@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { UserProvider } from "@/firebase/UserProvider";
 import { auth } from "@/firebase/config";
 import { useState, useEffect } from "react";
+import { JobsProvider } from "@/firebase/JobProvider";
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
@@ -21,21 +22,21 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   if (loading) {
-    return <div>
-      loading..
-    </div>; // or a loading spinner
+    return <div>loading..</div>; // or a loading spinner
   }
 
   return (
     <>
       <UserProvider>
-        {noLayoutPages.includes(router.pathname) ? (
-          <Component {...pageProps} />
-        ) : (
-          <Layout>
+        <JobsProvider>
+          {noLayoutPages.includes(router.pathname) ? (
             <Component {...pageProps} />
-          </Layout>
-        )}
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
+        </JobsProvider>
       </UserProvider>
     </>
   );

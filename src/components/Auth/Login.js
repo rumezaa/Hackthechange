@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { signInWithGoogle, signIn, signUp } from "@/firebase/firebaseFuncs";
 import { UserContext } from "@/firebase/UserProvider";
 import { useRouter } from "next/router";
-import { EyeIcon } from "@/pages/components/EyeIcon";
+import { EyeIcon } from "@/components/EyeIcon";
 
 export default function Login() {
   const nav = useRouter();
@@ -104,6 +104,7 @@ export default function Login() {
                 placeholder="*****"
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
+                className="focus-outline:none"
               />
               <div onClick={() => setIsHidden(!isHidden)}>
                 <EyeIcon isHidden={isHidden} />

@@ -3,7 +3,7 @@ import { auth } from "@/firebase/config";
 import { signOut } from "firebase/auth";
 
 export default function Nav() {
-  const route = useRouter();
+  const router = useRouter();
   async function handleSignOut() {
     signOut(auth)
       .then(() => {
@@ -16,9 +16,11 @@ export default function Nav() {
   }
   return (
     <div className="bg-blue w-screen h-16 flex flex-row text-white justify-between">
+
+        <div  />
       <div
         className="flex items-center cursor-pointer"
-        onClick={() => Router.push("/")}
+        onClick={() => router.push("/")}
       ></div>
       <div className="flex gap-x-10 px-10">
         <h2
