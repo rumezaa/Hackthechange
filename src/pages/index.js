@@ -28,7 +28,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="bg-blue rounded-full text-white p-4 px-10">
+        <div className="bg-blue rounded-full text-white p-4 px-10 cursor pointer">
           <h2>login</h2>
         </div>
       </div>
