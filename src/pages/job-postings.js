@@ -86,8 +86,8 @@ export default function JobPostings() {
           >
             <h2>
               {showRecommendation
-                ? "Click to show recommendations"
-                : "Click to hide recommendations"}
+                ? "Click to hide recommendations"
+                : "Click to show recommendations"}
             </h2>
           </div>
         </div>
